@@ -1,8 +1,8 @@
 [BITS 32]
 segment .text
 
-GLOBAL sse2_memcpy
-sse2_memcpy:
+GLOBAL _sse2_memcpy
+_sse2_memcpy:
     push ebp
     mov ebp, esp
     push esi
