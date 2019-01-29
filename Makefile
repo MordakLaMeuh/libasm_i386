@@ -7,7 +7,7 @@ OBJDIR	= objs
 
 ASMFLAGS = -f elf
 
-SRC = sse2_memcpy
+SRC = sse2_memcpy sse2_memzero
 
 TMP = $(basename $(notdir $(SRC)))
 OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(TMP)))
