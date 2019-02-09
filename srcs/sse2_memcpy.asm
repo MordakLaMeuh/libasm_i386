@@ -1,4 +1,9 @@
 [BITS 32]
+
+segment .data
+align 16
+fxsave_region times 512 db 0
+
 segment .text
 
 GLOBAL _sse2_memcpy
@@ -8,6 +13,8 @@ _sse2_memcpy:
     push esi
     push edi
     push ebx
+
+    fxsave [fxsave_region]
 
     mov edi, [ebp + 8]      ; dest
     mov esi, [ebp + 12]     ; src
@@ -43,6 +50,8 @@ _sse2_memcpy:
     dec ebx
 
     jnz .memcpy_loop_copy            ; loop please
+
+    fxrstor [fxsave_region]
 
     pop ebx
     pop edi
